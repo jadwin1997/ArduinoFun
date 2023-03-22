@@ -6,7 +6,7 @@
 #include <FastLED.h>
 #include "PinDefinitionsAndMore.h" // Define macros for input and output pin etc.
 #include <IRremote.hpp>
-#define NUM_LEDS 65
+#define NUM_LEDS 60
 
 #define DATA_PIN 3
 #define CLOCK_PIN 13
@@ -161,7 +161,7 @@ void loop() {
           rainbow();
               }
          else if (IrReceiver.decodedIRData.command == 0x16) { // * KEY
-        
+          theaterChase(CRGB(255,255,255), 100);
               }
          else if (IrReceiver.decodedIRData.command == 0x19) {// 0 KEY
           
@@ -176,10 +176,12 @@ void loop() {
           
               }
          else if (IrReceiver.decodedIRData.command == 0x1C) {//OK
-        
+            colorWipe(CRGB(255,0,0),20);
+            colorWipe(CRGB(0,255,0),20);
+            colorWipe(CRGB(0,0,255),20);
               }
          else if (IrReceiver.decodedIRData.command == 0x5A) {//RIGHT ARROW
-        
+        fire();
               }
          else if (IrReceiver.decodedIRData.command == 0x52) {//DOWN ARROW
           
