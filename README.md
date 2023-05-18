@@ -1,10 +1,4 @@
-# Project Name
-
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/your_username/repo_name.svg)](https://github.com/your_username/repo_name/stargazers)
-[![GitHub Forks](https://img.shields.io/github/forks/your_username/repo_name.svg)](https://github.com/your_username/repo_name/network/members)
-[![Contributors](https://img.shields.io/github/contributors/your_username/repo_name.svg)](https://github.com/your_username/repo_name/graphs/contributors)
-
+# Arduino Fun!
 Short project description goes here.
 
 ## Table of Contents
@@ -17,22 +11,21 @@ Short project description goes here.
 
 ## Features
 
-- List key features of your project here.
+This repo contains some fun arduino projects focused around visual effects, robotics, guis, computer vision, and much more!
 
 ## Getting Started
 
-1. Installation instructions go here.
-2. Step-by-step guide on how to install and set up the project.
+For most projects, you will only need the arduino IDE: https://www.arduino.cc/en/software
+and a compatible arduino board. 
 
 ## Usage
-
-Explain how to use your project and provide code examples. You can also include screenshots or diagrams if applicable.
-
+TODO: FILL THIS OUT
 ## Examples
 
-This section can include a collection of examples showcasing the different functionalities of your project. You can provide code snippets, images, or even videos to demonstrate the possibilities.
+TODO: FILL THIS OUT
 
 ### Example 1
+TODO: FILL THIS OUT
 
 ```cpp
 // Code example goes here
