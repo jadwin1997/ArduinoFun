@@ -6,7 +6,7 @@
 #include <FastLED.h>
 #include "PinDefinitionsAndMore.h" // Define macros for input and output pin etc.
 #include <IRremote.hpp>
-#define NUM_LEDS 60
+#define NUM_LEDS 50
 
 #define DATA_PIN 3
 #define CLOCK_PIN 13
@@ -14,7 +14,7 @@ CRGB leds[NUM_LEDS];
 void setup() {
   FastLED.addLeds<NEOPIXEL, DATA_PIN>(leds, NUM_LEDS);  // GRB ordering is assumed
  
-    Serial.begin(9600);
+    Serial.begin(115200);
     // Just to know which program is running on my Arduino
     Serial.println(F("START " __FILE__ " from " __DATE__ "\r\nUsing library version " VERSION_IRREMOTE));
 
@@ -100,27 +100,6 @@ void colorWipe(CRGB color, int wait) {
     delay(wait);
   }
 }
-void openCVTesting(){
-  int data = 0;
-  if(Serial.available()>0){
-    if(Serial.read()=='x'){
-      data = Serial.parseInt();
-    }
-      
-  }
-  for(int i=0; i<NUM_LEDS; i++) {
-    if(i == data){
-    leds[i] = CRGB::White;
-    }
-    else{
-    leds[i] = CRGB::Black;
-    }
-    FastLED.show();
-  }
-  }
-
-  
-
 void loop() {
     /*
      * Check if received data is available and if yes, try to decode it.
@@ -142,7 +121,7 @@ void loop() {
             Serial.println(F("Received noise or an unknown (or not yet enabled) protocol"));
             // We have an unknown protocol here, print more info
             IrReceiver.printIRResultRawFormatted(&Serial, true);
-            //IrReceiver.decodedIRData.command = previous_command;
+            IrReceiver.decodedIRData.command = previous_command;
         }
         Serial.println();
     }
@@ -152,68 +131,67 @@ void loop() {
          * since receiving has stopped after the end of the current received data packet.
          */
         IrReceiver.resume(); // Enable receiving of the next value
-
+        IrReceiver.decodedIRData.command = 0x1C;
         /*
          * Finally, check the received data and perform actions according to the received command
          */
-         rainbowChase(25);
-//        if (IrReceiver.decodedIRData.command == 0x45) { // 1 KEY
-//          //rainbow();
-//          colorWipe(CRGB(255,0,0),20);
-//              
-//        } else if (IrReceiver.decodedIRData.command == 0x46) { // 2 KEY
-//          //theaterChase(CRGB(100,255,100),100);
-//          colorWipe(CRGB(0,255,0),20);
-//              }
-//
-//         else if (IrReceiver.decodedIRData.command == 0x44) { // 4 KEY
-//          colorWipe(CRGB(0,255,255),20);  
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x40) { // 5 KEY
-//          colorWipe(CRGB(255,255,255),20);
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x43) { // 6 KEY
-//          colorWipe(CRGB(0,0,0),20);
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x7) { // 7 KEY
-//          colorWipe(CRGB(255,255,0),20);
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x15) { // 8 KEY
-//          colorWipe(CRGB(255,0,255),20);
-//              } 
-//         else if (IrReceiver.decodedIRData.command == 0x9) { // 9 KEY
-//          rainbow();
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x16) { // * KEY
-//          theaterChase(CRGB(255,255,255), 100);
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x19) {// 0 KEY
-//          
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0xD) {//#
-//        
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x18) {//UP ARROW
-//              openCVTesting();
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x8) {//LEFT ARROW
-//          
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x1C) {//OK
-//            colorWipe(CRGB(255,0,0),20);
-//            colorWipe(CRGB(0,255,0),20);
-//            colorWipe(CRGB(0,0,255),20);
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x5A) {//RIGHT ARROW
-//        fire();   
-//              }
-//         else if (IrReceiver.decodedIRData.command == 0x52) {//DOWN ARROW
-//          
-//              }        
-//        else if(IrReceiver.decodedIRData.command == 0x47) {
-//          colorWipe(CRGB(0,0,255),30);
-//              }
-//        
+        if (IrReceiver.decodedIRData.command == 0x45) { // 1 KEY
+          //rainbow();
+          colorWipe(CRGB(255,0,0),20);
+              
+        } else if (IrReceiver.decodedIRData.command == 0x46) { // 2 KEY
+          //theaterChase(CRGB(100,255,100),100);
+          colorWipe(CRGB(0,255,0),20);
+              }
+
+         else if (IrReceiver.decodedIRData.command == 0x44) { // 4 KEY
+          colorWipe(CRGB(0,255,255),20);  
+              }
+         else if (IrReceiver.decodedIRData.command == 0x40) { // 5 KEY
+          colorWipe(CRGB(255,255,255),20);
+              }
+         else if (IrReceiver.decodedIRData.command == 0x43) { // 6 KEY
+          colorWipe(CRGB(0,0,0),20);
+              }
+         else if (IrReceiver.decodedIRData.command == 0x7) { // 7 KEY
+          colorWipe(CRGB(255,255,0),20);
+              }
+         else if (IrReceiver.decodedIRData.command == 0x15) { // 8 KEY
+          colorWipe(CRGB(255,0,255),20);
+              } 
+         else if (IrReceiver.decodedIRData.command == 0x9) { // 9 KEY
+          rainbow();
+              }
+         else if (IrReceiver.decodedIRData.command == 0x16) { // * KEY
+          theaterChase(CRGB(255,255,255), 100);
+              }
+         else if (IrReceiver.decodedIRData.command == 0x19) {// 0 KEY
+          
+              }
+         else if (IrReceiver.decodedIRData.command == 0xD) {//#
+        
+              }
+         else if (IrReceiver.decodedIRData.command == 0x18) {//UP ARROW
+        
+              }
+         else if (IrReceiver.decodedIRData.command == 0x8) {//LEFT ARROW
+          
+              }
+         else if (IrReceiver.decodedIRData.command == 0x1C) {//OK
+            colorWipe(CRGB(255,0,0),20);
+            colorWipe(CRGB(0,255,0),20);
+            colorWipe(CRGB(0,0,255),20);
+              }
+         else if (IrReceiver.decodedIRData.command == 0x5A) {//RIGHT ARROW
+        fire();   
+              }
+         else if (IrReceiver.decodedIRData.command == 0x52) {//DOWN ARROW
+          
+              }        
+        else if(IrReceiver.decodedIRData.command == 0x47) {
+          colorWipe(CRGB(0,0,255),30);
+              }
+        
         
     
 }
