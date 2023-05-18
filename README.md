@@ -1,5 +1,5 @@
 # Arduino Fun!
-Short project description goes here.
+This repo contains some fun arduino projects focused around visual effects, robotics, guis, computer vision, and much more!
 
 ## Table of Contents
 - [Features](#features)
@@ -11,7 +11,7 @@ Short project description goes here.
 
 ## Features
 
-This repo contains some fun arduino projects focused around visual effects, robotics, guis, computer vision, and much more!
+Some fun arduino projects using various sensors such as LEDs, IR sensors, servos, buttons/limit switches, and motor drivers. 
 
 ## Getting Started
 
